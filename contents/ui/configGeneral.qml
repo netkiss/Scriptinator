@@ -14,6 +14,7 @@ Kirigami.FormLayout {
 	property alias cfg_onMouseOverScript: onMouseOverScript.text
 	property alias cfg_periodicScript: periodicScript.text
 	property alias cfg_timeout: timeout.value
+	property alias cfg_fontSize: fontSize.value
 	property alias cfg_customIcon: customIcon.text
 	property alias cfg_showBackground: showBackground.checked
 	property alias cfg_showTooltip: showTooltip.checked
@@ -48,6 +49,19 @@ Kirigami.FormLayout {
 			}
 			Label{
 				text: i18n("Timeout to run Periodic script (in seconds); set it to 0 to disable")
+				Layout.fillWidth: true
+				wrapMode: Label.Wrap
+			}
+			width: page.width
+		}
+		RowLayout{
+			SpinBox {
+				id: fontSize
+				from: 1
+				to: 100
+			}
+			Label{
+				text: i18n("Script output text font size")
 				Layout.fillWidth: true
 				wrapMode: Label.Wrap
 			}

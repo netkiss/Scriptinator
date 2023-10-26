@@ -58,9 +58,12 @@
 	<entry name="timeout" type="Int">
 			<default>60</default>
 	</entry>
+	<entry name="fontSize" type="Int">
+			<default>10</default>
+	</entry>
 	<entry name="periodicScript" type="String">
 		<label>Periodic script</label>
-		<default>echo ''</default>
+		<default>echo 'echo script'</default>
 	</entry>
 	
 	</group>

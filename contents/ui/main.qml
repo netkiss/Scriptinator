@@ -2,6 +2,8 @@ import QtQuick.Layouts 1.0
 import QtQuick 2.0
 import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core 2.0 as PlasmaCore
+import org.kde.plasma.components 2.0 as PlasmaComponents
+import org.kde.plasma.plasmoid 2.0
 
 Item {
 		id: root
@@ -11,7 +13,7 @@ Item {
 	//		color: "white"
 	//	}
 	
-		Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
+		Plasmoid.preferredRepresentation: Plasmoid.compactRepresentation
 		property string initScript: Plasmoid.configuration.initScript
 		property string onClickScript: Plasmoid.configuration.onClickScript
 		property string onClickIcon: Plasmoid.configuration.onClickIcon
@@ -27,6 +29,8 @@ Item {
 		property int setHeight: Plasmoid.configuration.setHeight
 		property int setWidth: Plasmoid.configuration.setWidth
 		property int timeout: Plasmoid.configuration.timeout
+
+		property int fontSize: Plasmoid.configuration.fontSize
 		
 		property string iconPath: ""
 		property string dynamicTooltip: ""
@@ -176,4 +180,35 @@ Item {
 		
 		Layout.maximumWidth: setWidth == 0 ? parent.Width : setWidth
 		Layout.minimumWidth: setWidth == 0 ? parent.Width : setWidth
+
+
+
+		Plasmoid.compactRepresentation: PlasmaComponents.Label {
+			id: label
+			Layout.minimumWidth: textMetrics.width
+			Layout.minimumHeight: textMetrics.height
+
+			text: outputText
+
+			font.pointSize: fontSize // \todo add autocalculate
+			
+			horizontalAlignment: Text.AlignHCenter
+
+			// TextMetrics {
+			// 	id: textMetrics
+			// 	font.family: label.font.family
+			// 	font.pointSize: label.font.pointSize
+			// 	text: widget.formatText(100)
+			// }
+
+			// Since we overrode the default compactRepresentation,
+			// we need to setup the click to toggle the popup.
+			// MouseArea {
+			// 	anchors.fill: parent
+			// 	onClicked: plasmoid.expanded = !plasmoid.expanded
+			// }
+		}
+
+
+
 }
